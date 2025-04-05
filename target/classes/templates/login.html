@@ -1,15 +1,134 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
-    <title>Login</title>
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #FEFAE0;
+    }
+    
+    .login-container {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      padding: 40px;
+    }
+    
+    h1 {
+      text-align: center;
+      color: #283618;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+    
+    .input-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #283618;
+      font-weight: bold;
+    }
+    
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+    
+    input:focus {
+      border-color: #283618;
+      outline: none;
+    }
+    
+    .primary-button {
+      background-color: #283618;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-bottom: 15px;
+    }
+    
+    .primary-button:hover {
+      background-color: #1e2712;
+    }
+    
+    .secondary-button {
+      background-color: transparent;
+      color: #283618;
+      border: 1px solid #283618;
+      border-radius: 4px;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-bottom: 15px;
+    }
+    
+    .secondary-button:hover {
+      background-color: rgba(40, 54, 24, 0.1);
+    }
+    
+    .text-button {
+      background: none;
+      border: none;
+      color: #283618;
+      font-size: 14px;
+      text-decoration: underline;
+      cursor: pointer;
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-<h1>Login Page</h1>
-<form action="/login" method="post">
-    <input type="text" name="username" placeholder="Username" />
-    <input type="password" name="password" placeholder="Password" />
-    <button type="submit">Login</button>
-</form>
+  <div class="login-container">
+    <h1>Calorie-wise</h1>
+    
+    <form>
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+      </div>
+      
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+      </div>
+      
+      <button type="submit" class="primary-button">Login</button>
+      <button type="button" class="secondary-button" onclick="window.location.href='/register'">Register</button>
+      <button type="button" class="text-button">Forgot Password?</button>
+    </form>
+  </div>
 </body>
 </html>

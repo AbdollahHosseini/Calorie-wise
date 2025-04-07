@@ -1,0 +1,41 @@
+:root {
+    --medium-green: #606C38;
+    --dark-green: #283618;
+    --light-beige: #FEFAE0;
+    --light-orange: #DDA15E;
+    --dark-orange: #BC6C35;
+}
+
+body {
+    background-color: var(--light-beige);
+    margin: 0;
+    padding: 0;
+}
+
+.homeTitle {
+    text-align: left;
+    font-family: "Quicksand", sans-serif;
+    background-color: var(--dark-green);
+    padding: 20px;
+    margin-top: 0;
+    border-bottom: 10px solid var(--dark-orange);
+}
+
+.homeTitle img {
+    text-align: right;
+    height: 1em;
+    margin-left: 1000px;
+    margin-top: 5px;
+  }
+
+#calorie {
+    color: var(--dark-orange);
+}
+
+#wise {
+    color: var(--medium-green);
+}
+
+.tileTitle {
+    font-family: "Quicksand", sans-serif;
+}

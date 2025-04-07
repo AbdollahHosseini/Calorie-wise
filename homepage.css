@@ -14,11 +14,21 @@ body {
 
 .homeTitle {
     text-align: left;
+    font-size: 2.5rem;
     font-family: "Quicksand", sans-serif;
     background-color: var(--dark-green);
     padding: 20px;
     margin-top: 0;
     border-bottom: 10px solid var(--dark-orange);
+    text-shadow:
+        0.25px 0.25px 2px var(--light-beige),
+        -0.25px -0.25px 2px var(--light-beige),
+        0.25px -0.25px 2px var(--light-beige),
+        -0.25px 0.25px 2px var(--light-beige),
+        0px 0.25px 2px var(--light-beige),
+        0px -0.25px 2px var(--light-beige),
+        0.25px 0px 2px var(--light-beige),
+        -0.25px 0px 2px var(--light-beige);
 }
 
 .homeTitle img {

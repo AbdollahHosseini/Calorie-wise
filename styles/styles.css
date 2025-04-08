@@ -29,6 +29,12 @@ body {
     position: relative;
 }
 
+.home-link {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit text color */
+    display: inline-block; /* Ensure proper layout */
+}
+
 .settings-button {
     position: absolute;
     top: 50%;
@@ -138,5 +144,5 @@ body {
 }
 
 .nav-item:hover {
-    color: var(--color-e);
+    color: #550f0d;
 }

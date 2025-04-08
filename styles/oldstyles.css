@@ -1,0 +1,142 @@
+:root {
+    --medium-green: #3a4e22;
+    --dark-green: #3a4e22;
+    --light-beige: #FEFAE0;
+    --light-orange: #ff6f00;
+    --dark-orange: #ff6600;
+}
+
+body {
+    background-color: var(--light-beige);
+    margin: 0;
+    padding: 0;
+}
+
+.homeTitle {
+    text-align: left;
+    font-size: 2.5rem;
+    font-family: "Quicksand", sans-serif;
+    background-color: #3a4e22;
+    padding: 20px;
+    margin-top: 0;
+    border-bottom: 5px solid #F65D05;
+    position: relative;
+}
+
+.settings-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 25px;
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    color: var(--light-beige);
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.settings-button:hover {
+    color: #d4d1b9;
+}
+
+#calorie {
+    color: #eb8850;
+}
+
+#wise {
+    color: #e9e5e5;
+}
+
+.tile-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    padding: 30px 5vw;
+    margin: 40px 0 0;
+}
+  
+.tile {
+    border: none;
+    border-radius: 15px;
+    padding: 35px 30px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+  
+.tile:nth-child(1) { background-color: var(--light-orange); }
+.tile:nth-child(2) { background-color: var(--dark-orange); }
+.tile:nth-child(3) { background-color: var(--medium-green); }
+.tile:nth-child(4) { background-color: var(--dark-green); }
+  
+.tileTitle {
+    font-family: "Quicksand", sans-serif;
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    color: #F0F0F0;
+}
+  
+/* .tile:nth-child(3) .tileTitle,
+.tile:nth-child(4) .tileTitle {
+    color: #F0F0F0;
+} */
+  
+.tile:hover {
+    transform: translateY(-15px); /* Move the tile up  higher on hover */
+    box-shadow: 8px 10px 15px rgba(0, 0, 0, 0.391);
+    transition: transform 0.6s ease, box-shadow 0.5s ease; /* Smooth transition for the shadow */
+}
+
+.bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 15px 0;
+    background-color: var(--dark-green);
+    border-top: 10px solid var(--dark-orange);
+    position: fixed;
+    bottom: 0; /* Fixes the bottom nav to the bottom of the screen */
+    left: 0;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    flex-basis: 0;
+    text-align: center;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.2s ease;
+    color: var(--light-beige);
+}
+
+.nav-icon {
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+    line-height: 1;
+}
+
+.nav-label {
+    font-family: "Quicksand", sans-serif;
+    line-height: 1;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.nav-item:hover {
+    color: var(--light-orange);
+}

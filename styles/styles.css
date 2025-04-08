@@ -7,6 +7,8 @@
     --color-d: #a3b18a; 
     --color-e: #E9EDC9; 
     --color-f: #a22c29;
+
+
 }
 
 body {
@@ -128,7 +130,7 @@ body {
     cursor: pointer;
     padding: 5px;
     transition: color 0.2s ease;
-    color: var(--color-f); /* Ivory */
+    color: var(--color-f);
 }
 
 .nav-icon {

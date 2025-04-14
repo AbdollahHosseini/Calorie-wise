@@ -1,71 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html>
+<head>
+    <title>Login - Calorie Wise</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f4f4;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        form {
+            background-color: white;
+            padding: 40px;
+            max-width: 400px;
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        input, label {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        input {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        input:focus {
+            border-color: #28a745;
+            box-shadow: 0 0 5px rgba(40, 167, 69, 0.5);
+            outline: none;
+        }
+        button {
+            padding: 12px;
+            background-color: #28a745;
+            border: none;
+            border-radius: 6px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        .title {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 30px;
+            font-weight: bold;
+            color: #333;
+        }
+        .note {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-top: 20px;
+        }
+        .note a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .note a:hover {
+            text-decoration: underline;
+        }
+        .button-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form action="/login" method="post">
+        <div class="title">Welcome Back to Calorie Wise</div>
 
-        <link rel="stylesheet" href="styles/newstyles.css">
-        <link rel="icon" type="image/x-icon" href="assets/images/calorieWiseFaviconNew.jpg">
+        <label>Username:</label>
+        <input type="text" name="username" placeholder="Enter your username" required>
 
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+        <label>Password:</label>
+        <input type="password" name="password" placeholder="Enter your password" required>
 
-        <title>Home | CalorieWise</title>
-    </head>
-    <body>
-        <h1 class="homeTitle">
-            <a href="index.html" class="home-link">
-                <span id="calorie">Calorie</span><span id="wise">Wise</span>
-            </a>
-        
-            <button class="settings-button" aria-label="Settings" aria-expanded="false" aria-controls="settings-menu">
-                &#9881;
-            </button>
-        
-            <div class="settings-dropdown" id="settings-menu" hidden>
-                <ul>
-                    <li><a href="#">Account</a></li>
-                    <li><a href="#">Settings</a></li>
-                    <li><hr></li>
-                    <li><a href="#">Logout</a></li>
-                </ul>
-            </div>
-        </h1>
-
-        <div class="tile-container">
-
-            <div class="tile">
-                <h2 class="tileTitle">Calorie Tracker</h2>
-                </div>
-
-            <div class="tile">
-                <h2 class="tileTitle">Meals</h2>
-                </div>
-
-            <div class="tile">
-                <h2 class="tileTitle">Water Tracker</h2>
-                </div>
-
-            <div class="tile">
-                <h2 class="tileTitle">Weekly Step-Count</h2>
-                </div>
-
+        <div class="button-wrapper">
+            <button type="submit">Login</button>
         </div>
-        <nav class="bottom-nav">
-            <a href="#" class="nav-item" aria-label="Log Food"> <span class="nav-icon">&#x1F34E;</span>
-                <span class="nav-label">Log Food</span>
-            </a>
-            <a href="#" class="nav-item" aria-label="Track">
-                <span class="nav-icon">&#x1F4C8;</span>
-                <span class="nav-label">Track</span>
-            </a>
-            <a href="#" class="nav-item" aria-label="Log Exercise">
-                <span class="nav-icon">&#x1F3C3;</span>
-                <span class="nav-label">Log Exercise</span>
-            </a>
-        </nav>
 
-        <script src="index.js"></script>
-    </body>
+        <div class="note">Don't have an account? <a href="/register">Register here</a></div>
+    </form>
+</body>
 </html>

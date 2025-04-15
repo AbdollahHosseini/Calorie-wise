@@ -81,9 +81,9 @@
             <select id="weightValue">
               <option value="">--Choose weight--</option>
             </select>
-          </div>
+        </div>
           
-          <script>
+        <script>
             const weightUnit = document.getElementById("weightUnit");
             const weightValue = document.getElementById("weightValue");
           
@@ -109,11 +109,11 @@
             weightUnit.addEventListener("change", () => {
               populateWeightOptions(weightUnit.value);
             });
-          </script>
+        </script>
 
-          <br>
+        <br>
 
-          <div style="display: flex; align-items: center; gap: 10px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
             <h2 style="margin: 0;">What is your height?</h2>
           
             <select id="heightUnit">
@@ -124,9 +124,9 @@
             <select id="heightValue">
               <option value="">--Choose height--</option>
             </select>
-          </div>
+        </div>
 
-          <script>
+        <script>
             const heightUnit = document.getElementById("heightUnit");
             const heightValue = document.getElementById("heightValue");
           
@@ -161,8 +161,11 @@
             heightUnit.addEventListener("change", () => {
               populateHeightOptions(heightUnit.value);
             });
-          </script>
-          
+        </script>
+
+        <br>
+
+        
           
         
     </body>

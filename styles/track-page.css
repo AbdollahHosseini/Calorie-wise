@@ -1,0 +1,337 @@
+
+:root {
+    --green: #2AB474;
+    --orange: #F47A4E;
+    --cyan: #25B5C1;
+    --gold: #F4B03E;
+    --white: #ffffff;
+    --navy: #0c2239;
+  }
+  
+  body {
+    background-color: var(--white);
+    margin: 0;
+    padding: 0;
+    padding-bottom: 125px;
+  }
+  
+  .homeTitle {
+    text-align: left;
+    font-size: 2.5rem;
+    font-family: "Quicksand", sans-serif;
+    background-color: var(--navy);
+    padding: 20px;
+    margin-top: 0;
+    border-bottom: 5px solid var(--orange);
+    position: relative;
+  }
+  
+  .settings-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 25px;
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    color: var(--white);
+    font-size: 2rem;
+    line-height: 1;
+  }
+  
+  .settings-button:hover {
+    color: var(--orange);
+  }
+  
+  #calorie {
+    color: var(--orange);
+  }
+  
+  #wise {
+    color: var(--white);
+  }
+  
+  .tile-layout {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: #f7f9fb;
+    padding: 20px;
+  }
+  
+  /* Shared tile styles */
+  .tile {
+    position: absolute;
+    background: #fff;
+    border-radius: 40px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    width: 450px;
+    height: 100px;
+    transition: transform 0.2s ease;
+  }
+  
+  .tile:hover {
+    transform: translateY(-5px);
+  }
+  
+  .tile-icon {
+    font-size: 32px;
+    color: #fff;
+  }
+  
+  .tile-content h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+  }
+  
+  .tile-content p {
+    margin: 0px 0 0;
+    font-size: 14px;
+    color: #eee;
+  }
+  
+  /* Color Themes */
+  .navy-tile {
+    background-color: #0c2239;
+    justify-content: center;
+    width: 700px;
+    height: 75px;
+  }
+  
+  .green-tile {
+    background-color: #3a4e22;
+  }
+  
+  .orange-tile {
+    background-color: #F47A4E;
+  }
+  
+  /* Positioning */
+  .tile-1 {
+    top: 150px;
+    left: 75px;
+  }
+  
+  .tile-2 {
+    top: 150px;
+    left: 675px;
+  }
+  
+  .tile-3 {
+    top: 350px;
+    left: 75px;
+  }
+  
+  .tile-4 {
+    top: 350px;
+    left: 675px;
+  }
+  
+  .tile-5 {
+    top: -10px;
+    left: 260px;
+  }
+  
+  
+  
+  .bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 15px 0;
+    background-color: var(--navy);
+    border-top: 5px solid var(--orange);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    flex-basis: 0;
+    text-align: center;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.2s ease;
+    color: var(--white);
+  }
+  
+  .nav-icon {
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+    line-height: 1;
+  }
+  
+  .nav-label {
+    font-family: "Quicksand", sans-serif;
+    line-height: 1;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  
+  .nav-item:hover {
+    color: var(--orange);
+  }
+  
+  .home-link {
+    text-decoration: none;
+  }
+  
+  .settings-dropdown {
+    position: absolute;
+    top: 90%;
+    right: 15px;
+    background-color: var(--white);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 160px;
+    z-index: 1100;
+  }
+  
+  .settings-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 5px 0;
+  }
+  
+  .settings-dropdown li {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .settings-dropdown hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 5px 0;
+  }
+  
+  .settings-dropdown a {
+    display: block;
+    padding: 8px 15px;
+    color: var(--navy);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: "Quicksand", sans-serif;
+    white-space: nowrap;
+  }
+  
+  .settings-dropdown a:hover {
+    background-color: #f0f0f0;
+    color: var(--orange);
+  }
+  
+  .settings-dropdown:not([hidden]) {
+    display: block;
+  }
+  
+  .header {
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  .header h1 {
+    font-size: 1.5rem;
+    color: #222;
+  }
+  
+  /* Tabs */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    background: #f0f0f0;
+    padding: 10px 0;
+  }
+  
+  .tabs button {
+    background: none;
+    border: none;
+    margin: 0 10px;
+    padding: 8px 12px;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #444;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+  }
+  
+  .tabs button.active {
+    border-bottom: 3px solid #007aff;
+    color: #007aff;
+  }
+  
+  /* Main Dashboard */
+  main {
+    padding: 20px;
+  }
+  
+  /* Step Counter */
+  .step-counter {
+    text-align: center;
+    margin-bottom: 20px;
+    max-width: 750px;
+  }
+  
+  .main-counter {
+    width: 750px;
+  }
+  
+  .step-counter h2 {
+    font-size: 2rem;
+    color: #007aff;
+  }
+  
+  .step-counter .subtext {
+    color: #2AB474
+  }
+  
+  /* Progress Bar */
+  .step-progress {
+    height: 8px;
+    width: 95%;
+    background: #ddd;
+    border-radius: 20px;
+    margin: 10px auto;
+    overflow: hidden;
+  }
+  
+  
+  .step-progress .fill {
+    height: 100%;
+    background-color: #007aff;
+    width: 76%;
+  }
+  
+  .circular-progress {
+    --size: 80px;
+    --progress: 50;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    background:
+      conic-gradient(#007aff calc(var(--progress) * 1%), #eee 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #333;
+    font-size: 0.9rem;
+  }
+  

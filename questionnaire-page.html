@@ -68,7 +68,49 @@
 
         </script>
         
+        <br>
 
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <h2 style="margin: 0;">What is your weight?</h2>
+          
+            <select id="weightUnit">
+              <option value="kg">kg</option>
+              <option value="lbs">lbs</option>
+            </select>
+          
+            <select id="weightValue">
+              <option value="">--Choose weight--</option>
+            </select>
+          </div>
+          
+          <script>
+            const weightUnit = document.getElementById("weightUnit");
+            const weightValue = document.getElementById("weightValue");
+          
+            function populateWeightOptions(unit) {
+              weightValue.innerHTML = '<option value="">--Choose weight--</option>';
+          
+              let min = unit === "kg" ? 30 : 66;
+              let max = unit === "kg" ? 200 : 440;
+              let step = 1;
+          
+              for (let i = min; i <= max; i += step) {
+                const option = document.createElement("option");
+                option.value = i;
+                option.textContent = `${i} ${unit}`;
+                weightValue.appendChild(option);
+              }
+            }
+          
+            // Initial load
+            populateWeightOptions(weightUnit.value);
+          
+            // Update on unit change
+            weightUnit.addEventListener("change", () => {
+              populateWeightOptions(weightUnit.value);
+            });
+          </script>
+          
         
     </body>
 </html>

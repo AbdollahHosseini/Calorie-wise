@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="styles/home-page.css" />
+    <link rel="icon" type="image/x-icon" href="assets/images/calorieWiseFaviconNew.jpg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Questionnaire | CalorieWise</title>
+  </head>
+  <body>
+    <h1 class="homeTitle">
+      <a href="index.html" class="home-link">
+        <span id="calorie">Calorie</span><span id="wise">Wise</span>
+      </a>
+
+      <button class="settings-button" aria-label="Settings" aria-expanded="false" aria-controls="settings-menu">
+        &#9881;
+      </button>
+
+      <div class="settings-dropdown" id="settings-menu" hidden>
+        <ul>
+          <li><a href="#">Account</a></li>
+          <li><a href="#">Settings</a></li>
+          <li><hr /></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </div>
+    </h1>
+
+    <form id="questionnaireForm">
+      <h2>What is your goal?</h2>
+      <input type="radio" name="goal" value="Gain Muscle" id="objective1" />
+      <label for="objective1">Gain Muscle</label><br />
+
+      <input type="radio" name="goal" value="Lose Fat" id="objective2" />
+      <label for="objective2">Lose Fat</label><br />
+
+      <input type="radio" name="goal" value="Maintenance" id="objective3" />
+      <label for="objective3">Maintenance</label>
+
+      <br /><br />
+
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <h2 style="margin: 0;">What is your age?</h2>
+        <select id="age">
+          <option value="">--Choose your age--</option>
+        </select>
+      </div>
+
+      <br />
+
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <h2 style="margin: 0;">What is your height?</h2>
+        <select id="heightUnit">
+          <option value="cm">cm</option>
+          <option value="ft">ft/in</option>
+        </select>
+        <select id="heightValue">
+          <option value="">--Choose height--</option>
+        </select>
+      </div>
+
+      <br />
+
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <h2 style="margin: 0;">What is your weight?</h2>
+        <select id="weightUnit">
+          <option value="kg">kg</option>
+          <option value="lbs">lbs</option>
+        </select>
+        <select id="weightValue">
+          <option value="">--Choose weight--</option>
+        </select>
+      </div>
+
+
+
+      <h2>What is your sex?</h2>
+      <input type="radio" name="sex" value="Female" id="female" />
+      <label for="female">Female</label><br />
+
+      <input type="radio" name="sex" value="Male" id="male" />
+      <label for="male">Male</label><br />
+
+
+      <h2>Do you have any dietary preferences?</h2>
+      <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+        <label><input type="checkbox" name="diet" value="Halal" /> Halal</label>
+        <label><input type="checkbox" name="diet" value="Vegetarian" /> Vegetarian</label>
+        <label><input type="checkbox" name="diet" value="Vegan" /> Vegan</label>
+      </div>
+
+      <br />
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      // Age dropdown
+      const ageDropdown = document.getElementById("age");
+      for (let age = 18; age <= 100; age++) {
+        const option = document.createElement("option");
+        option.value = age;
+        option.textContent = age;
+        ageDropdown.appendChild(option);
+      }
+
+      // Weight dropdown
+      const weightUnit = document.getElementById("weightUnit");
+      const weightValue = document.getElementById("weightValue");
+
+      function populateWeightOptions(unit) {
+        weightValue.innerHTML = '<option value="">--Choose weight--</option>';
+        let min = unit === "kg" ? 30 : 66;
+        let max = unit === "kg" ? 200 : 440;
+        for (let i = min; i <= max; i++) {
+          const option = document.createElement("option");
+          option.value = i;
+          option.textContent = `${i} ${unit}`;
+          weightValue.appendChild(option);
+        }
+      }
+
+      populateWeightOptions(weightUnit.value);
+      weightUnit.addEventListener("change", () => {
+        populateWeightOptions(weightUnit.value);
+      });
+
+      // Height dropdown
+      const heightUnit = document.getElementById("heightUnit");
+      const heightValue = document.getElementById("heightValue");
+
+      function populateHeightOptions(unit) {
+        heightValue.innerHTML = '<option value="">--Choose height--</option>';
+        if (unit === "cm") {
+          for (let cm = 140; cm <= 220; cm++) {
+            const option = document.createElement("option");
+            option.value = cm;
+            option.textContent = `${cm} cm`;
+            heightValue.appendChild(option);
+          }
+        } else if (unit === "ft") {
+          for (let feet = 4; feet <= 7; feet++) {
+            for (let inches = 0; inches < 12; inches++) {
+              const totalInches = feet * 12 + inches;
+              const label = `${feet}'${inches}"`;
+              const option = document.createElement("option");
+              option.value = totalInches;
+              option.textContent = label;
+              heightValue.appendChild(option);
+            }
+          }
+        }
+      }
+
+      populateHeightOptions(heightUnit.value);
+      heightUnit.addEventListener("change", () => {
+        populateHeightOptions(heightUnit.value);
+      });
+
+      // Submit handler
+      const form = document.getElementById("questionnaireForm");
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const goal = document.querySelector('input[name="goal"]:checked')?.value;
+        const age = document.getElementById("age").value;
+        const weight = document.getElementById("weightValue").value;
+        const weightUnitVal = document.getElementById("weightUnit").value;
+        const height = document.getElementById("heightValue").value;
+        const heightUnitVal = document.getElementById("heightUnit").value;
+        const sex = document.querySelector('input[name="sex"]:checked')?.value;
+        const diets = Array.from(document.querySelectorAll('input[name="diet"]:checked')).map(cb => cb.value);
+
+        console.log({
+          goal,
+          age,
+          weight,
+          weightUnit: weightUnitVal,
+          height,
+          heightUnit: heightUnitVal,
+          sex,
+          diets,
+        });
+      });
+    </script>
+  </body>
+</html>

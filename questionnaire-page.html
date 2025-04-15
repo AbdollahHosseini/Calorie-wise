@@ -110,6 +110,59 @@
               populateWeightOptions(weightUnit.value);
             });
           </script>
+
+          <br>
+
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <h2 style="margin: 0;">What is your height?</h2>
+          
+            <select id="heightUnit">
+              <option value="cm">cm</option>
+              <option value="ft">ft/in</option>
+            </select>
+          
+            <select id="heightValue">
+              <option value="">--Choose height--</option>
+            </select>
+          </div>
+
+          <script>
+            const heightUnit = document.getElementById("heightUnit");
+            const heightValue = document.getElementById("heightValue");
+          
+            function populateHeightOptions(unit) {
+              heightValue.innerHTML = '<option value="">--Choose height--</option>';
+          
+              if (unit === "cm") {
+                for (let cm = 140; cm <= 220; cm++) {
+                  const option = document.createElement("option");
+                  option.value = cm;
+                  option.textContent = `${cm} cm`;
+                  heightValue.appendChild(option);
+                }
+              } else if (unit === "ft") {
+                for (let feet = 4; feet <= 7; feet++) {
+                  for (let inches = 0; inches < 12; inches++) {
+                    const totalInches = feet * 12 + inches;
+                    const label = `${feet}'${inches}"`;
+                    const option = document.createElement("option");
+                    option.value = totalInches; // useful for conversion if needed
+                    option.textContent = label;
+                    heightValue.appendChild(option);
+                  }
+                }
+              }
+            }
+          
+            // Initial load
+            populateHeightOptions(heightUnit.value);
+          
+            // Update on unit change
+            heightUnit.addEventListener("change", () => {
+              populateHeightOptions(heightUnit.value);
+            });
+          </script>
+          
           
         
     </body>

@@ -39,14 +39,36 @@
           <input type="radio" name="goal" value="Gain Muscle" id="objective1">
           <label for="apple">Gain Muscle</label><br>
         
-          <input type="radio" name="goal" value="banana" id="objective2">
+          <input type="radio" name="goal" value="Lose Fat" id="objective2">
           <label for="banana">Lose Fat</label><br>
         
-          <input type="radio" name="goal" value="strawberry" id="objective3">
+          <input type="radio" name="goal" value="Maintenance" id="strawberry">
           <label for="strawberry">Maintenance</label>
         </form>
 
+        <br>
+
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <h2 style="margin: 0;">What is your age?</h2>
+            <select id="age">
+              <option value="">--Choose your age--</option>
+            </select>
+        </div>
+          
+
+        <script>
+            const ageDropdown = document.getElementById("age");
+          
+            for (let age = 18; age <= 100; age++) {
+              const option = document.createElement("option");
+              option.value = age;
+              option.textContent = age;
+              ageDropdown.appendChild(option);
+            }
+
+        </script>
         
 
+        
     </body>
 </html>

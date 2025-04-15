@@ -175,6 +175,43 @@
           <label for="male">Male</label><br>
 
         </form>
+        
+        <h2>Do you have any dietary preferences?</h2>
+        <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+          <label>
+            <input type="checkbox" name="diet" value="Halal">
+            Halal
+          </label>
+        
+          <label>
+            <input type="checkbox" name="diet" value="Vegetarian">
+            Vegetarian
+          </label>
+        
+          <label>
+            <input type="checkbox" name="diet" value="Vegan">
+            Vegan
+          </label>
+        </div>
+
+        <script>
+            const dietCheckboxes = document.querySelectorAll('input[name="diet"]');
+          
+            function getSelectedDiets() {
+              const selected = [];
+              dietCheckboxes.forEach(cb => {
+                if (cb.checked) selected.push(cb.value);
+              });
+              return selected;
+            }
+          
+            // Example usage:
+            dietCheckboxes.forEach(cb => {
+              cb.addEventListener("change", () => {
+                console.log("Selected diets:", getSelectedDiets());
+              });
+            });
+        </script>
           
         
     </body>

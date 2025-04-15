@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="styles/track-page.css">
+        <link rel="icon" type="image/x-icon" href="assets/images/calorieWiseFaviconNew.jpg">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+        <title>Track | CalorieWise</title>
+    </head>
+<body>
+
+  <header>
+    <h1 class="homeTitle">
+        <a href=".html" class="home-link">
+            <span id="calorie">Calorie</span><span id="wise">Wise</span>
+        </a>
+    
+        <button class="settings-button" aria-label="Settings" aria-expanded="false" aria-controls="settings-menu">
+            &#9881;
+        </button>
+    
+        <div class="settings-dropdown" id="settings-menu" hidden>
+            <ul>
+                <li><a href="#">Account</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><hr></li>
+                <li><a href="#">Logout</a></li>
+            </ul>
+        </div>
+    </h1>
+  </header>
+
+  <main>
+
+    <div class="tile-layout">
+      <!-- Tile 1 -->
+      <div class="tile tile-1 orange-tile">
+        <div class="tile-icon">🔥</div>
+        <div class="tile-content">
+          <h3>187 kcal</h3>
+          <p>Calories Burned</p>
+        </div>
+        <div class="circular-progress" style="--progress: 10;">
+          <div class="value">10%</div>
+        </div>
+        <div class="step-counter">
+          <h2>187  <span class="subtext">Calories</span></h2>
+          <div class="step-progress">
+            <div class="fill" style="width: 10%;"></div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Tile 2 -->
+      <div class="tile tile-2 green-tile">
+        <div class="tile-icon">💧</div>
+        <div class="tile-content">
+          <h3>2.5L</h3>
+          <p>Water Intake</p>
+        </div>
+        <div class="circular-progress" style="--progress: 60;">
+          <div class="value">60%</div>
+        </div>
+        <div class="step-counter">
+          <h2>1.5L <span class="subtext">Drank</span></h2>
+          <div class="step-progress">
+            <div class="fill" style="width: 60%;"></div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Tile 3 -->
+      <div class="tile tile-3 green-tile">
+        <div class="tile-icon">🏋️</div>
+        <div class="tile-content">
+          <h3>12 min</h3>
+          <p>Exercise</p>
+        </div>
+        <div class="circular-progress" style="--progress: 20;">
+          <div class="value">20%</div>
+        </div>
+        <div class="step-counter">
+          <h2>12 <span class="subtext">Minutes</span></h2>
+          <div class="step-progress">
+            <div class="fill" style="width: 20%;"></div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Tile 4 -->
+      <div class="tile tile-4 orange-tile">
+        <div class="tile-icon">🛏️</div>
+        <div class="tile-content">
+          <h3>7.8 hrs</h3>
+          <p>Sleep</p>
+        </div>
+        <div class="circular-progress" style="--progress: 98;">
+          <div class="value">98%</div>
+        </div>
+        <div class="step-counter">
+          <h2>7.8 hrs <span class="subtext">Slept</span></h2>
+          <div class="step-progress">
+            <div class="fill" style="width: 98%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class = "tile tile-5 navy-tile">
+        <div class="step-counter main-counter">
+          <h2>7,641 <span class="subtext">Steps Taken</span></h2>
+          <div class="step-progress">
+            <div class="fill" style="width: 76%;"></div>
+          </div>
+        </div>
+
+
+    </div>
+  </main>
+
+    <nav class="bottom-nav">
+    <a href="#" class="nav-item" aria-label="Log Food"> <span class="nav-icon">&#x1F34E;</span>
+        <span class="nav-label">Log Food</span>
+    </a>
+    <a href="#" class="nav-item" aria-label="Track">
+        <span class="nav-icon">&#x1F4C8;</span>
+        <span class="nav-label">Track</span>
+    </a>
+    <a href="#" class="nav-item" aria-label="Log Exercise">
+        <span class="nav-icon">&#x1F3C3;</span>
+        <span class="nav-label">Log Exercise</span>
+    </a>
+</nav>
+</body>
+</html>

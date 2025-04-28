@@ -86,3 +86,27 @@ body {
   border-radius: 6px;
   font-family: "Quicksand", sans-serif;
 }
+
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+#editProfileBtn {
+  background-color: var(--orange);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: "Quicksand", sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#editProfileBtn:hover {
+  background-color: #e05e00;
+}

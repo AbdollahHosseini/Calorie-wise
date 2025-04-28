@@ -42,6 +42,12 @@
       <label>Goal:</label>
       <p id="goal" class="profile-text"></p>
 
+
+      <div class="button-group">
+        <button type="button" id="editProfileBtn">Edit Profile</button>
+      </div>
+
+      
     </div>
   </main>
 
@@ -73,6 +79,51 @@
       document.getElementById('age').textContent = user.age + " years";
       document.getElementById('goal').textContent = user.goal;
     });
+
+    document.getElementById('editProfileBtn').addEventListener('click', function() {
+  // Convert all <p> into <input>
+  ['fullName', 'email', 'age', 'weight', 'height', 'goal'].forEach(id => {
+    const p = document.getElementById(id);
+    const value = p.textContent.replace(' kg', '').replace(' cm', '').replace(' years', ''); // Clean labels
+    const input = document.createElement('input');
+    input.value = value.trim();
+    input.className = 'profile-text'; // Use same styling
+    input.id = id; // Keep same id
+    p.replaceWith(input);
+  });
+
+  // Change the button to "Save Changes"
+  this.textContent = 'Save Changes';
+  this.id = 'saveProfileBtn';
+
+  document.getElementById('saveProfileBtn').addEventListener('click', saveProfileChanges);
+});
+
+  async function saveProfileChanges() {
+    const fullName = document.getElementById('fullName').value.split(' ');
+    const firstName = fullName[0] || '';
+    const surname = fullName.slice(1).join(' ') || '';
+
+    const email = document.getElementById('email').value;
+    const age = document.getElementById('age').value;
+    const weight = document.getElementById('weight').value;
+    const height = document.getElementById('height').value;
+    const goal = document.getElementById('goal').value;
+    const username = localStorage.getItem('username');
+
+    const response = await fetch('/updateProfile', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username, weight, height, goal, diet: '' }) // Updating only fitness data for now
+    });
+
+    if (response.ok) {
+      alert('Profile updated successfully! 🎉');
+      window.location.reload(); // Reload to show fresh values
+    } else {
+      alert('Failed to update profile.');
+    }
+  }
   </script>
 </body>
 </html>

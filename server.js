@@ -1,5 +1,3 @@
-console.log("✅ THIS IS THE CORRECT SERVER FILE RUNNING");
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
@@ -13,7 +11,6 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 // Register route - Save user info
-// Register route - Save user info
 app.post('/register', (req, res) => {
   const { firstName, surname, gender, age, email, username, password } = req.body;
 
@@ -26,8 +23,8 @@ app.post('/register', (req, res) => {
     const lines = data.split('\n').filter(Boolean);
     const userExists = lines.some(line => {
       const parts = line.split(',');
-      const storedEmail = parts[5];
-      const storedUsername = parts[4];
+      const storedEmail = parts[4];
+      const storedUsername = parts[5];
       return storedEmail === email || storedUsername === username;
     });
 
@@ -45,7 +42,7 @@ app.post('/register', (req, res) => {
         return res.status(500).send('Error saving data.');
       }
       console.log("✅ User registered:", username);
-      res.sendStatus(200); // Success
+      res.sendStatus(200);
     });
   });
 });
@@ -92,8 +89,15 @@ app.post('/updateProfile', (req, res) => {
     const lines = data.split('\n').filter(Boolean);
     const updatedLines = lines.map(line => {
       const parts = line.split(',');
-      if (parts[4] === username) {
-        return `${line},${weight},${height},${goal},${diet}`;
+      if (parts[5] === username) { // Username is at index 5
+        while (parts.length < 11) {
+          parts.push('');
+        }
+        parts[7] = weight;
+        parts[8] = height;
+        parts[9] = goal;
+        parts[10] = diet;
+        return parts.join(',');
       }
       return line;
     });
@@ -104,6 +108,55 @@ app.post('/updateProfile', (req, res) => {
         return res.status(500).send('Server error');
       }
       res.sendStatus(200);
+    });
+  });
+});
+
+// Profile route - Fetch profile data
+app.post('/profile', (req, res) => {
+  const { username } = req.body;
+
+  console.log("📥 Fetching profile for username:", username);
+
+  fs.readFile('users.txt', 'utf8', (err, data) => {
+    if (err) {
+      console.error('❌ Error reading users.txt:', err);
+      return res.status(500).send('Server error');
+    }
+
+    const lines = data.split('\n').filter(Boolean);
+    const userLine = lines.find(line => {
+      const parts = line.split(',');
+      const storedUsername = parts[5]; // Username is at index 5
+      return storedUsername.trim() === username.trim();
+    });
+
+    if (!userLine) {
+      console.log("❌ User not found for:", username);
+      return res.status(404).send('User not found');
+    }
+
+    const parts = userLine.split(',');
+
+    const firstName = parts[0];
+    const surname = parts[1];
+    const gender = parts[2];
+    const age = parts[3];
+    const email = parts[4];
+    const storedUsername = parts[5];
+    const password = parts[6];
+    const weight = parts[7] || '';
+    const height = parts[8] || '';
+    const goal = parts[9] || '';
+    const diet = parts[10] || '';
+
+    res.json({
+      fullName: `${firstName} ${surname}`,
+      email,
+      weight,
+      height,
+      age,
+      goal
     });
   });
 });

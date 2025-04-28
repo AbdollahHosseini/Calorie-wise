@@ -6,7 +6,6 @@
     <title>Login | Calorie-wise</title>
     <link rel="stylesheet" href="styles/login.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
 </head>
 
 <body>
@@ -48,7 +47,7 @@
           });
         
           if (response.ok) {
-            localStorage.setItem('username', username);  // ✅ Save username locally!
+            localStorage.setItem('username', username);  
             window.location.href = "/home-page.html";
           } else {
             alert("Invalid username or password.");

@@ -43,6 +43,15 @@ body {
   color: var(--orange);
 }
 
+#home-link {
+  text-decoration: none;
+}
+#home-link:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
 #calorie {
   color: var(--orange);
 }

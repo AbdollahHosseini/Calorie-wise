@@ -1,0 +1,69 @@
+:root {
+  --green: #2AB474;
+  --orange: #F47A4E;
+  --cyan: #25B5C1;
+  --gold: #F4B03E;
+  --white: #ffffff;
+  --navy: #0c2239;
+}
+
+/* General page styling */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--white);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Top Navbar */
+header {
+  background-color: var(--navy);
+  color: var(--white);
+  padding: 15px 20px;
+  font-size: 24px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .settings-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Main content */
+.main-container {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Bottom Navbar */
+.bottom-nav {
+  background-color: var(--navy);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.bottom-nav a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bottom-nav a:hover {
+  color: var(--orange);
+}
+
+.bottom-nav i {
+  font-size: 20px;
+  margin-bottom: 5px;
+}

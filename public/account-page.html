@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="styles/home-page.css"> <!-- Same as homepage styling -->
+  <link rel="icon" type="image/x-icon" href="assets/images/calorieWiseFaviconNew.jpg">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <title>Account | CalorieWise</title>
+</head>
+
+<body>
+
+  <h1 class="homeTitle">
+    <a href="home-page.html" class="home-link">
+      <span id="calorie">Calorie</span><span id="wise">Wise</span>
+    </a>
+
+    <button class="settings-button" aria-label="Settings" aria-expanded="false" aria-controls="settings-menu">
+      &#9881;
+    </button>
+
+    <div class="settings-dropdown" id="settings-menu" hidden>
+      <ul>
+        <li><a href="account-page.html">Account</a></li>
+        <li><a href="settings-page.html">Settings</a></li>
+        <li><hr></li>
+        <li><a href="login.html">Logout</a></li>
+      </ul>
+    </div>
+  </h1>
+
+  <div class="tile-container">
+    <div class="tile" style="grid-column: span 2; background-color: var(--white); color: var(--navy); box-shadow: none; min-height: 100px;">
+      <h2 class="tileTitle" style="color: var(--navy); margin-bottom: 20px;">Your Profile</h2>
+
+      <p><strong>Full Name:</strong> [User's Full Name]</p>
+      <p><strong>Email:</strong> [User's Email]</p>
+      <p><strong>Weight:</strong> [User's Weight] kg</p>
+      <p><strong>Height:</strong> [User's Height] cm</p>
+      <p><strong>Age:</strong> [User's Age] years</p>
+      <p><strong>Goal:</strong> [User's Goal]</p>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <a class="nav-item" aria-label="Log Food" onclick="location.href='log-food-page.html'"> 
+      <span class="nav-icon">&#x1F34E;</span>
+      <span class="nav-label">Log Food</span>
+    </a>
+    <a class="nav-item" aria-label="Track" onclick="location.href='track-page.html'">
+      <span class="nav-icon">&#x1F4C8;</span>
+      <span class="nav-label">Track</span>
+    </a>
+    <a class="nav-item" aria-label="Log Exercise" onclick="location.href='log-exercise-page.html'">
+      <span class="nav-icon">&#x1F3C3;</span>
+      <span class="nav-label">Log Exercise</span>
+    </a>
+  </nav>
+
+  <script src="scripts/home-page.js"></script> <!-- Reuse the home-page dropdown script -->
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/questionnaire-page.css" />
+  <link rel="icon" type="image/x-icon" href="assets/images/calorieWiseFaviconNew.jpg" />
+  <title>Questionnaire | CalorieWise</title>
+</head>
+
+<body>
+  <h1 class="homeTitle">
+    <a href="login.html" class="home-link">
+      <span id="calorie">Calorie</span><span id="wise">Wise</span>
+    </a>
+  </h1>
+
+  <main class="register-container">
+    <form id="questionnaireForm" class="register-form">
+      <div class="title">Personalise Your Profile</div>
+
+      <label for="weight">Weight:</label>
+      <input id="weight" type="number" name="weight" placeholder="Weight in Kilograms" required>
+
+      <label for="height">Height:</label>
+      <input id="height" type="number" name="height" placeholder="Height in cm" required>
+
+      <label for="goal">Goal:</label>
+      <select id="goal" name="goal" required>
+        <option value="" disabled selected>Select your goal</option>
+        <option value="gain-muscle">Gain Muscle</option>
+        <option value="lose-weight">Lose Weight</option>
+        <option value="maintain">Maintain</option>
+        <option value="other">Other</option>
+      </select>
+
+      <label for="diet">Dietary Restrictions:</label>
+      <select id="diet" name="diet" required>
+        <option value="" disabled selected>Select your Diet</option>
+        <option value="halal">Halal</option>
+        <option value="vegan">Vegan</option>
+        <option value="vegetarian">Vegetarian</option>
+        <option value="other">Other</option>
+      </select>
+
+      <div class="button-group">
+        <button type="button" onclick="location.href='register-page.html'">Back</button>
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </main>
+
+  <script>
+    document.getElementById('questionnaireForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const weight = document.getElementById('weight').value;
+      const height = document.getElementById('height').value;
+      const goal = document.getElementById('goal').value;
+      const diet = document.getElementById('diet').value;
+      const username = localStorage.getItem('username'); // Saved during login or register
+
+      if (!username) {
+        alert("Username not found, please login again.");
+        return;
+      }
+
+      const response = await fetch("/updateProfile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, weight, height, goal, diet })
+      });
+
+      if (response.ok) {
+        window.location.href = "home-page.html";
+      } else {
+        alert("Failed to update profile.");
+      }
+    });
+  </script>
+</body>
+</html>

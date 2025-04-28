@@ -35,30 +35,26 @@
             </div>
         </form>
     </div>
-<script>
-    document.getElementById("loginForm").addEventListener("submit", async function (e) {
-    e.preventDefault();
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
-
-    try {
-        const response = await fetch("/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const username = document.getElementById("username").value;
+          const password = document.getElementById("password").value;
+        
+          const response = await fetch("/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username, password })
+          });
+        
+          if (response.ok) {
+            localStorage.setItem('username', username);  // ✅ Save username locally!
+            window.location.href = "/home-page.html";
+          } else {
+            alert("Invalid username or password.");
+          }
         });
-
-        if (response.ok) {
-        window.location.href = "/home-page.html";
-        } else {
-        alert("Invalid username or password.");
-        }
-    } catch (error) {
-        console.error("Fetch failed:", error); // 👈 this will tell us if fetch is broken
-        alert("Login failed due to network error.");
-    }
-    });
-</script>
+        </script>
 </body>
 </html>
 

@@ -41,6 +41,9 @@
             <label for="age">Age:</label>
             <input id="age" type="number" name="age" placeholder="Enter your age" required min="0">
 
+            <label for="email">Email:</label>
+            <input id="email" type="text" name="email" placeholder="Enter Your Email" required>
+
             <label for="username">Username:</label>
             <input id="username" type="text" name="username" placeholder="Choose a username" required>
 
@@ -52,6 +55,33 @@
                 <button type="submit">Continue</button>
             </div>
         </form>
+
+        <script>
+            document.querySelector('.register-form').addEventListener('submit', async function (e) {
+                e.preventDefault();
+            
+                const firstName = document.getElementById('firstName').value;
+                const surname = document.getElementById('surname').value;
+                const gender = document.getElementById('gender').value;
+                const age = document.getElementById('age').value;
+                const email = document.getElementById('email').value;
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+            
+                const response = await fetch("/register", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ firstName, surname, gender, age, email, username, password })
+                });
+            
+                if (response.ok) {
+                    localStorage.setItem('username', username); // ✅ Save the username right after successful registration
+                    window.location.href = "/questionnaire-page.html";
+                } else {
+                    alert("Email or Username already exists.");
+                }
+            });
+            </script>
     </main>
 
 </body>

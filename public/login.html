@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Calorie-wise</title>
+    <link rel="stylesheet" href="styles/login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+</head>
+
+<body>
+    <div class="wrapper">
+        <form id="loginForm">
+            <div class = "logo-container">
+                <h1>Calorie<span id="wise">Wise</span></h1>
+            </div>
+            <div class="input-box">
+                
+                <input type="text" id="username" placeholder="Username" required>
+                <i class='bx bx-user'></i>
+            </div>
+            <div class="input-box">
+                
+                <input type="password" id="password" placeholder="Password" required>
+                <i class='bx bx-lock'></i>
+            </div>
+            <div class="remember-forgot">
+                <label><input type="checkbox">  Remember Me</label>
+                <a href="#">Forgot Password</a>
+            </div>
+            <button type="submit" class="btn">Login</button>
+            <div class="register-link">
+                <p>Dont have an account? <a href="register-page.html">Register</a></p>
+            </div>
+        </form>
+    </div>
+<script>
+    document.getElementById("loginForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    try {
+        const response = await fetch("/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+        });
+
+        if (response.ok) {
+        window.location.href = "/home-page.html";
+        } else {
+        alert("Invalid username or password.");
+        }
+    } catch (error) {
+        console.error("Fetch failed:", error); // 👈 this will tell us if fetch is broken
+        alert("Login failed due to network error.");
+    }
+    });
+</script>
+</body>
+</html>
+

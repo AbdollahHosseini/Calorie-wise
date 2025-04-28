@@ -37,7 +37,7 @@ app.post('/register', (req, res) => {
     }
 
     // If not exists, save new user
-    const line = `${firstName},${surname},${gender},${age},${username},${email},${password}\n`;
+    const line = `${firstName},${surname},${gender},${age},${email},${username},${password}\n`;
 
     fs.appendFile('users.txt', line, (err) => {
       if (err) {
@@ -66,7 +66,7 @@ app.post('/login', (req, res) => {
     const lines = data.split('\n');
     const isValid = lines.some(line => {
       if (!line.trim()) return false;
-      const [ , , , , storedUsername, storedPassword ] = line.trim().split(',');
+      const [ , , , , , storedUsername, storedPassword ] = line.trim().split(',');
       console.log("→ CHECKING: ", storedUsername, storedPassword);
       return storedUsername.trim() === username.trim() && storedPassword.trim() === password.trim();
     });

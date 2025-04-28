@@ -1,1 +1,1 @@
-a,b,male,18,admin,x@gmail.com,admin,92,180,gain-muscle,halal
+a,b,male,18,x@gmail.com,admin,admin,92,180,gain-muscle,halal

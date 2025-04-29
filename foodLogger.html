@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Log - Nutrition Tracker</title>
+    <link rel="stylesheet" href="foodLoggerStyle.css">
+    </head>
+<body>
+
+    <h1>Log Your Food</h1>
+
+    <div id="food-list-container" class="content-container hidden">
+         <h2>
+            <span>Select a Food Item</span>
+            <button id="back-to-log-btn">&larr; Back to Log</button>
+         </h2>
+        <input type="search" id="food-search-input" placeholder="Search for food...">
+        <div id="food-buttons">
+            <button class="food-button" data-food-name="Apple">Apple</button>
+            <button class="food-button" data-food-name="Banana">Banana</button>
+            <button class="food-button" data-food-name="Orange">Orange</button>
+            <button class="food-button" data-food-name="Grapes">Grapes</button>
+            <button class="food-button" data-food-name="Strawberries">Strawberries</button>
+            <button class="food-button" data-food-name="Bread (White Slice)">Bread (White Slice)</button>
+            <button class="food-button" data-food-name="Bread (Whole Wheat Slice)">Bread (Whole Wheat Slice)</button>
+            <button class="food-button" data-food-name="Rice (White, uncooked)">Rice (White, uncooked)</button>
+            <button class="food-button" data-food-name="Rice (Brown, uncooked)">Rice (Brown, uncooked)</button>
+            <button class="food-button" data-food-name="Pasta (Dry)">Pasta (Dry)</button>
+            <button class="food-button" data-food-name="Chicken Breast (Raw)">Chicken Breast (Raw)</button>
+            <button class="food-button" data-food-name="Salmon Fillet (Raw)">Salmon Fillet (Raw)</button>
+            <button class="food-button" data-food-name="Beef Mince (Lean, Raw)">Beef Mince (Lean, Raw)</button>
+            <button class="food-button" data-food-name="Tofu (Firm)">Tofu (Firm)</button>
+            <button class="food-button" data-food-name="Egg (Large)">Egg (Large)</button>
+            <button class="food-button" data-food-name="Milk (Whole)">Milk (Whole)</button>
+            <button class="food-button" data-food-name="Almond Milk (Unsweetened)">Almond Milk (Unsweetened)</button>
+            <button class="food-button" data-food-name="Yogurt (Plain)">Yogurt (Plain)</button>
+            <button class="food-button" data-food-name="Cheese (Cheddar)">Cheese (Cheddar)</button>
+            <button class="food-button" data-food-name="Mixed Salad Leaves">Mixed Salad Leaves</button>
+            <button class="food-button" data-food-name="Spinach (Raw)">Spinach (Raw)</button>
+            <button class="food-button" data-food-name="Broccoli (Raw)">Broccoli (Raw)</button>
+            <button class="food-button" data-food-name="Carrot (Raw)">Carrot (Raw)</button>
+            <button class="food-button" data-food-name="Potato (Raw)">Potato (Raw)</button>
+            <button class="food-button" data-food-name="Sweet Potato (Raw)">Sweet Potato (Raw)</button>
+            <button class="food-button" data-food-name="Almonds">Almonds</button>
+            <button class="food-button" data-food-name="Peanut Butter">Peanut Butter</button>
+        </div>
+    </div>
+
+    <div id="daily-log-container" class="content-container">
+        <h2 class="log-section-title">Today's Log</h2>
+
+        <div id="breakfast-log" class="meal-log-section">
+            <h3>
+                <span>Breakfast</span>
+                <button class="add-food-btn" data-meal="Breakfast">+</button>
+            </h3>
+            <div class="meal-summary">
+                <span><span class="summary-label">Total Kcal:</span> <span id="breakfast-kcal">0</span></span>
+            </div>
+            <ul id="log-list-breakfast" class="meal-log-list"></ul>
+            <p class="log-empty-message" id="empty-breakfast">No breakfast items logged yet.</p>
+        </div>
+
+        <div id="lunch-log" class="meal-log-section">
+            <h3>
+                <span>Lunch</span>
+                 <button class="add-food-btn" data-meal="Lunch">+</button>
+            </h3>
+             <div class="meal-summary">
+                <span><span class="summary-label">Total Kcal:</span> <span id="lunch-kcal">0</span></span>
+            </div>
+            <ul id="log-list-lunch" class="meal-log-list"></ul>
+             <p class="log-empty-message" id="empty-lunch">No lunch items logged yet.</p>
+        </div>
+
+        <div id="dinner-log" class="meal-log-section">
+            <h3>
+                <span>Dinner</span>
+                 <button class="add-food-btn" data-meal="Dinner">+</button>
+            </h3>
+             <div class="meal-summary">
+                <span><span class="summary-label">Total Kcal:</span> <span id="dinner-kcal">0</span></span>
+            </div>
+            <ul id="log-list-dinner" class="meal-log-list"></ul>
+             <p class="log-empty-message" id="empty-dinner">No dinner items logged yet.</p>
+        </div>
+
+        <div id="snacks-log" class="meal-log-section">
+            <h3>
+                <span>Snacks</span>
+                 <button class="add-food-btn" data-meal="Snacks">+</button>
+            </h3>
+             <div class="meal-summary">
+                <span><span class="summary-label">Total Kcal:</span> <span id="snacks-kcal">0</span></span>
+            </div>
+            <ul id="log-list-snacks" class="meal-log-list"></ul>
+             <p class="log-empty-message" id="empty-snacks">No snacks logged yet.</p>
+        </div>
+
+        <div id="total-nutrition-container">
+             <div>
+                <span class="total-label">Total Calories</span>
+                <span class="total-value" id="total-calories-value">0</span> kcal
+             </div>
+              <div>
+                <span class="total-label">Total Protein</span>
+                <span class="total-value" id="total-protein-value">0</span> g
+             </div>
+              <div>
+                <span class="total-label">Total Carbs</span>
+                <span class="total-value" id="total-carbs-value">0</span> g
+             </div>
+              <div>
+                <span class="total-label">Total Fat</span>
+                <span class="total-value" id="total-fat-value">0</span> g
+             </div>
+        </div>
+
+         </div>
+
+
+    <div id="food-modal-overlay" class="modal-overlay">
+        <div class="modal-content">
+            <h3 id="modal-food-name">Add/Edit Food Item</h3>
+            <div id="modal-nutrition-display">
+                <span><span class="label">Calories:</span> --</span>
+                <span><span class="label">P:</span> -- g</span>
+                <span><span class="label">C:</span> -- g</span>
+                <span><span class="label">F:</span> -- g</span>
+            </div>
+            <label for="food-amount">Amount:</label>
+            <input type="number" id="food-amount" name="food-amount" min="0" step="any" placeholder="e.g., 150">
+            <div class="unit-selection-container">
+                <label for="food-unit-select">Unit:</label>
+                <select id="food-unit-select" name="unit">
+                    <option value="g" selected>g (grams)</option>
+                    <option value="kg">kg (kilograms)</option>
+                    <option value="oz">oz (ounces)</option>
+                    <option value="lb">lb (pounds)</option>
+                </select>
+            </div>
+            <div class="modal-buttons">
+                 <button id="modal-action-btn" class="modal-add-btn">Add</button>
+                <button id="modal-cancel-btn" class="modal-cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="foodLogger.js" defer></script>
+
+</body>
+</html>

@@ -10,145 +10,115 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
-// Register route - Save user info
+// Register route
 app.post('/register', (req, res) => {
   const { firstName, surname, gender, age, email, username, password } = req.body;
 
   fs.readFile('users.txt', 'utf8', (err, data) => {
-    if (err) {
-      console.error('Failed to read users.txt:', err);
-      return res.status(500).send('Error reading data.');
-    }
+    if (err) return res.status(500).send('Error reading data.');
 
     const lines = data.split('\n').filter(Boolean);
     const userExists = lines.some(line => {
       const parts = line.split(',');
-      const storedEmail = parts[4];
-      const storedUsername = parts[5];
-      return storedEmail === email || storedUsername === username;
+      return parts[4] === email || parts[5] === username;
     });
 
-    if (userExists) {
-      console.log("❌ Duplicate email or username found.");
-      return res.status(409).send('Email or username already exists.');
-    }
+    if (userExists) return res.status(409).send('Email or username already exists.');
 
-    // If not exists, save new user
-    const line = `${firstName},${surname},${gender},${age},${email},${username},${password}\n`;
+    const line = `${firstName},${surname},${gender},${age},${email},${username},${password},,,0,0`;
 
-    fs.appendFile('users.txt', line, (err) => {
-      if (err) {
-        console.error('Failed to save user:', err);
-        return res.status(500).send('Error saving data.');
-      }
-      console.log("✅ User registered:", username);
+    fs.appendFile('users.txt', line + '\n', err => {
+      if (err) return res.status(500).send('Error saving data.');
+      console.log("✅ Registered:", username);
       res.sendStatus(200);
     });
   });
 });
 
-// Login route - Check user credentials
+// Login route
 app.post('/login', (req, res) => {
-  console.log("LOGIN ROUTE HIT");
-
   const { username, password } = req.body;
-  console.log("LOGIN ATTEMPT →", username, password);
 
   fs.readFile('users.txt', 'utf8', (err, data) => {
-    if (err) {
-      console.error("Error reading users.txt:", err);
-      return res.status(500).send("Server error");
-    }
+    if (err) return res.status(500).send("Server error");
 
-    const lines = data.split('\n');
-    const isValid = lines.some(line => {
-      if (!line.trim()) return false;
-      const [ , , , , , storedUsername, storedPassword ] = line.trim().split(',');
-      console.log("→ CHECKING: ", storedUsername, storedPassword);
-      return storedUsername.trim() === username.trim() && storedPassword.trim() === password.trim();
+    const isValid = data.split('\n').some(line => {
+      const parts = line.split(',');
+      return parts[5]?.trim() === username.trim() && parts[6]?.trim() === password.trim();
     });
 
-    if (isValid) {
-      res.sendStatus(200);
-    } else {
-      res.status(401).send("Invalid credentials");
-    }
+    return isValid ? res.sendStatus(200) : res.status(401).send("Invalid credentials");
   });
 });
 
-// Update user profile after questionnaire
+// Update profile
 app.post('/updateProfile', (req, res) => {
-  const { username, weight, height, goal, diet } = req.body;
+  const { username, firstName, surname, age, email, weight, height, goal, diet, caloriesIn, caloriesOut } = req.body;
 
   fs.readFile('users.txt', 'utf8', (err, data) => {
-    if (err) {
-      console.error('Error reading users.txt:', err);
-      return res.status(500).send('Server error');
-    }
+    if (err) return res.status(500).send('Server error');
 
     const lines = data.split('\n').filter(Boolean);
     const updatedLines = lines.map(line => {
       const parts = line.split(',');
-      if (parts[5] === username) { // Username is at index 5
-        while (parts.length < 11) {
-          parts.push('');
-        }
-        parts[7] = weight;
-        parts[8] = height;
-        parts[9] = goal;
-        parts[10] = diet;
-        return parts.join(',');
+
+      if (parts[5]?.trim() === username.trim()) {
+        while (parts.length < 13) parts.push('');
+
+        parts[0] = (firstName || parts[0]).trim();
+        parts[1] = (surname || parts[1]).trim();
+        parts[3] = (age || parts[3]).trim();
+        parts[4] = (email || parts[4]).trim();
+        parts[7] = (weight || parts[7]).trim();
+        parts[8] = (height || parts[8]).trim();
+        parts[9] = (goal || parts[9]).trim();
+        parts[10] = (diet || parts[10]).trim();
+        parts[11] = (caloriesIn || parts[11]).trim();
+        parts[12] = (caloriesOut || parts[12]).trim();
+
+        console.log("✅ Updated line for:", username);
+        console.log("🔁 Writing values:", {
+          firstName: parts[0],
+          surname: parts[1],
+          age: parts[3],
+          email: parts[4],
+          weight: parts[7],
+          height: parts[8],
+          goal: parts[9],
+          diet: parts[10],
+          caloriesIn: parts[11],
+          caloriesOut: parts[12]
+        });
+
+        return parts.slice(0, 13).join(',');
       }
+
       return line;
     });
 
-    fs.writeFile('users.txt', updatedLines.join('\n') + '\n', (err) => {
-      if (err) {
-        console.error('Error updating users.txt:', err);
-        return res.status(500).send('Server error');
-      }
+    fs.writeFile('users.txt', updatedLines.join('\n') + '\n', err => {
+      if (err) return res.status(500).send('Server error');
+      console.log(`✅ Profile updated for ${username}`);
       res.sendStatus(200);
     });
   });
 });
 
-// Profile route - Fetch profile data
+// Fetch profile
 app.post('/profile', (req, res) => {
   const { username } = req.body;
 
-  console.log("📥 Fetching profile for username:", username);
-
   fs.readFile('users.txt', 'utf8', (err, data) => {
-    if (err) {
-      console.error('❌ Error reading users.txt:', err);
-      return res.status(500).send('Server error');
-    }
+    if (err) return res.status(500).send('Server error');
 
-    const lines = data.split('\n').filter(Boolean);
-    const userLine = lines.find(line => {
+    const line = data.split('\n').find(line => {
       const parts = line.split(',');
-      const storedUsername = parts[5]; // Username is at index 5
-      return storedUsername.trim() === username.trim();
+      return parts[5]?.trim() === username.trim();
     });
 
-    if (!userLine) {
-      console.log("❌ User not found for:", username);
-      return res.status(404).send('User not found');
-    }
+    if (!line) return res.status(404).send('User not found');
 
-    const parts = userLine.split(',');
-
-    const firstName = parts[0];
-    const surname = parts[1];
-    const gender = parts[2];
-    const age = parts[3];
-    const email = parts[4];
-    const storedUsername = parts[5];
-    const password = parts[6];
-    const weight = parts[7] || '';
-    const height = parts[8] || '';
-    const goal = parts[9] || '';
-    const diet = parts[10] || '';
+    const [firstName, surname, gender, age, email, storedUsername, password, weight, height, goal, diet, caloriesIn, caloriesOut] = line.split(',');
 
     res.json({
       fullName: `${firstName} ${surname}`,
@@ -156,18 +126,67 @@ app.post('/profile', (req, res) => {
       weight,
       height,
       age,
-      goal
+      goal,
+      caloriesIn,
+      caloriesOut
+    });
+  });
+});
+// Log daily calorie intake and burned
+app.post('/logCalories', (req, res) => {
+  const { username, caloriesIn, caloriesOut, date } = req.body;
+  const logDate = date || new Date().toISOString().slice(0, 10);
+
+  fs.readFile('calorie-history.json', 'utf8', (err, data) => {
+    let history = {};
+    if (!err && data) {
+      try {
+        history = JSON.parse(data);
+      } catch (e) {
+        console.error("Failed to parse calorie-history.json:", e);
+      }
+    }
+
+    if (!history[username]) history[username] = [];
+
+    const existingIndex = history[username].findIndex(entry => entry.date === logDate);
+    if (existingIndex >= 0) {
+      history[username][existingIndex] = { date: logDate, in: caloriesIn, out: caloriesOut };
+    } else {
+      history[username].push({ date: logDate, in: caloriesIn, out: caloriesOut });
+    }
+
+    fs.writeFile('calorie-history.json', JSON.stringify(history, null, 2), err => {
+      if (err) return res.status(500).send("Error writing history");
+      res.sendStatus(200);
     });
   });
 });
 
-// Catch all unmatched routes
+// Fetch historical calorie data for graphing
+app.post('/getCalorieHistory', (req, res) => {
+  const { username } = req.body;
+
+  fs.readFile('calorie-history.json', 'utf8', (err, data) => {
+    if (err || !data) return res.json([]);
+    
+    try {
+      const history = JSON.parse(data);
+      const userData = history[username] || [];
+      res.json(userData);
+    } catch (e) {
+      console.error("Error parsing calorie-history.json:", e);
+      res.json([]);
+    }
+  });
+});
+
+// Catch-all
 app.use((req, res, next) => {
   console.log(`🔥 Unhandled request → ${req.method} ${req.url}`);
   next();
 });
 
-// Start server
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}/login.html`);
+  console.log(`✅ Server running at http://localhost:${PORT}/login.html`);
 });

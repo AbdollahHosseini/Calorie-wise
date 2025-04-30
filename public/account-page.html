@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <link rel="stylesheet" href="styles/account-page.css"> <!-- Reuse your register-page.css -->
-  <link rel="icon" type="image/x-icon" href="assets/images/calorieWiseFaviconNew.jpg">
+  <link rel="stylesheet" href="styles/account-page.css" />
+  <link rel="icon" type="image/x-icon" href="assets/images/calorieWiseFaviconNew.jpg" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Courier+Prime&family=Poppins:wght@400;600&display=swap"
+    rel="stylesheet"
+  />
   <title>Account | CalorieWise</title>
 </head>
 
@@ -42,16 +45,15 @@
       <label>Goal:</label>
       <p id="goal" class="profile-text"></p>
 
-
       <div class="button-group">
         <button type="button" id="editProfileBtn">Edit Profile</button>
       </div>
-
-      
     </div>
   </main>
 
   <script>
+    let originalGoal = '';
+
     document.addEventListener('DOMContentLoaded', async function () {
       const username = localStorage.getItem('username');
       if (!username) {
@@ -74,56 +76,88 @@
 
       document.getElementById('fullName').textContent = user.fullName;
       document.getElementById('email').textContent = user.email;
-      document.getElementById('weight').textContent = user.weight + " kg";
-      document.getElementById('height').textContent = user.height + " cm";
-      document.getElementById('age').textContent = user.age + " years";
+      document.getElementById('weight').textContent = user.weight + ' kg';
+      document.getElementById('height').textContent = user.height + ' cm';
+      document.getElementById('age').textContent = user.age + ' years';
       document.getElementById('goal').textContent = user.goal;
+      originalGoal = user.goal;
     });
 
-    document.getElementById('editProfileBtn').addEventListener('click', function() {
-  // Convert all <p> into <input>
-  ['fullName', 'email', 'age', 'weight', 'height', 'goal'].forEach(id => {
-    const p = document.getElementById(id);
-    const value = p.textContent.replace(' kg', '').replace(' cm', '').replace(' years', ''); // Clean labels
-    const input = document.createElement('input');
-    input.value = value.trim();
-    input.className = 'profile-text'; // Use same styling
-    input.id = id; // Keep same id
-    p.replaceWith(input);
-  });
+    document.getElementById('editProfileBtn').addEventListener('click', function () {
+      ['fullName', 'email', 'age', 'weight', 'height', 'goal'].forEach((id) => {
+        const p = document.getElementById(id);
+        const rawValue = p.textContent.trim();
+        let value = rawValue;
 
-  // Change the button to "Save Changes"
-  this.textContent = 'Save Changes';
-  this.id = 'saveProfileBtn';
+        if (id === 'weight') value = rawValue.replace(' kg', '');
+        if (id === 'height') value = rawValue.replace(' cm', '');
+        if (id === 'age') value = rawValue.replace(' years', '');
 
-  document.getElementById('saveProfileBtn').addEventListener('click', saveProfileChanges);
-});
+        let input;
 
-  async function saveProfileChanges() {
-    const fullName = document.getElementById('fullName').value.split(' ');
-    const firstName = fullName[0] || '';
-    const surname = fullName.slice(1).join(' ') || '';
+        if (id === 'goal') {
+          input = document.createElement('select');
+          input.className = 'profile-text';
+          input.id = 'goal';
 
-    const email = document.getElementById('email').value;
-    const age = document.getElementById('age').value;
-    const weight = document.getElementById('weight').value;
-    const height = document.getElementById('height').value;
-    const goal = document.getElementById('goal').value;
-    const username = localStorage.getItem('username');
+          const options = ['Gain Muscle', 'Lose Weight', 'Maintain'];
+          options.forEach((optValue) => {
+            const option = document.createElement('option');
+            option.value = optValue;
+            option.textContent = optValue;
+            if (optValue.toLowerCase() === value.toLowerCase()) {
+              option.selected = true;
+            }
+            input.appendChild(option);
+          });
+        } else {
+          input = document.createElement('input');
+          input.value = value;
+          input.className = 'profile-text';
+          input.id = id;
+        }
 
-    const response = await fetch('/updateProfile', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, weight, height, goal, diet: '' }) // Updating only fitness data for now
+        p.replaceWith(input);
+      });
+
+      // Change the button to Save
+      this.textContent = 'Save Changes';
+      this.id = 'saveProfileBtn';
+
+      document.getElementById('saveProfileBtn').addEventListener('click', saveProfileChanges);
     });
 
-    if (response.ok) {
-      alert('Profile updated successfully! 🎉');
-      window.location.reload(); // Reload to show fresh values
-    } else {
-      alert('Failed to update profile.');
+    async function saveProfileChanges() {
+      const fullNameField = document.getElementById('fullName');
+      const fullName = fullNameField ? fullNameField.value.split(' ') : [''];
+      const firstName = fullName[0] || '';
+      const surname = fullName.slice(1).join(' ') || '';
+      const email = document.getElementById('email')?.value || '';
+      const age = document.getElementById('age')?.value.trim() || '';
+      let weight = document.getElementById('weight').value.trim();
+      let height = document.getElementById('height').value.trim();
+
+      if (weight.toLowerCase() === 'kg' || weight === '') weight = '';
+      if (height.toLowerCase() === 'cm' || height === '') height = '';
+
+      const goal = document.getElementById('goal').value;
+      const username = localStorage.getItem('username');
+
+      console.log('📤 Submitting update:', { username, weight, height, goal });
+
+      const response = await fetch('/updateProfile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({firstName, surname, age, email, username, weight, height, goal, diet: '' })
+      });
+
+      if (response.ok) {
+        alert('Profile updated successfully!');
+        setTimeout(() => window.location.reload(), 300);
+      } else {
+        alert('Failed to update profile.');
+      }
     }
-  }
   </script>
 </body>
 </html>

@@ -1,0 +1,460 @@
+/* Apply a clean font to the whole page */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Center the main heading */
+h1 {
+    text-align: center;
+    color: #4CAF50; /* Greenish color */
+}
+
+/* Container shared styling */
+.content-container {
+     max-width: 600px;
+     margin: 20px auto;
+     background-color: #fff;
+     padding: 20px 25px;
+     border-radius: 8px;
+     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* --- View Visibility --- */
+.hidden {
+    display: none !important;
+}
+
+/* --- Food Selection View Styles --- */
+ #food-list-container h2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+#back-to-log-btn {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+#back-to-log-btn:hover {
+    background-color: #5a6268;
+}
+#food-search-input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+#food-buttons {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+    padding: 0;
+    margin-top: 15px;
+}
+.food-button {
+    padding: 15px 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: #f0f8ff;
+    color: #333;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, opacity 0.3s ease;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.food-button:hover {
+    background-color: #e6f2ff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+.food-button:active {
+    background-color: #d9eaff;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+.food-button.hidden {
+    display: none;
+}
+
+.homeTitle {
+    text-align: left;
+    font-size: 2.5rem;
+    font-family: "Quicksand", sans-serif;
+    background-color: #0c2239;
+    padding: 20px;
+    margin-top: 0;
+    border-bottom: 5px solid #F47A4E;
+    position: relative;
+  }
+  
+  .home-link {
+    text-decoration: none;
+    font-family: "Quicksand", sans-serif;
+   }
+
+    .home-link:hover {
+        color: #F47A4E;
+        cursor: pointer;
+    }
+
+    .home-link:visited {
+        text-decoration: none;
+    }
+
+  .settings-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 25px;
+    background: none;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 2rem;
+    line-height: 1;
+  }
+  .settings-button:hover {
+    color: #F47A4E;
+  }
+  #calorie {
+    color: #F47A4E;
+  }
+  #wise {
+    color: #ffffff;
+  }
+  .settings-dropdown {
+    position: absolute;
+    top: 90%;
+    right: 15px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 160px;
+    z-index: 1100;
+  }
+  .settings-dropdown ul {
+    list-style: none;
+    margin: 0;
+    padding: 5px 0;
+  }
+  .settings-dropdown li {
+    margin: 0;
+    padding: 0;
+  }
+  .settings-dropdown hr {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 5px 0;
+  }
+  .settings-dropdown a {
+    display: block;
+    padding: 8px 15px;
+    color: #0c2239;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-family: "Quicksand", sans-serif;
+    white-space: nowrap;
+  }
+  .settings-dropdown a:hover {
+    background-color: #f0f0f0;
+    color: #F47A4E;
+  }
+  .settings-dropdown:not([hidden]) {
+    display: block;
+  }
+  .bottom-nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 15px 0;
+    background-color: #0c2239;
+    border-top: 5px solid #F47A4E;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    flex-basis: 0;
+    text-align: center;
+    text-decoration: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: color 0.2s ease;
+    color: #ffffff;
+  }
+  .nav-icon {
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+    line-height: 1;
+  }
+  .nav-label {
+    font-family: "Quicksand", sans-serif;
+    line-height: 1;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  .nav-item:hover {
+    color: #F47A4E;
+  }
+
+
+/* --- Daily Log View Styles --- */
+#daily-log-container .log-section-title {
+    color: #4CAF50;
+    margin-bottom: 20px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+.meal-log-section {
+    margin-bottom: 25px;
+}
+.meal-log-section h3 {
+    color: #555;
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.add-food-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    line-height: 26px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    padding: 0;
+    flex-shrink: 0;
+}
+.add-food-btn:hover {
+    background-color: #218838;
+}
+
+.meal-summary {
+    font-size: 0.85rem;
+    color: #777;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    text-align: left;
+}
+.meal-summary .summary-label {
+    font-weight: bold;
+    color: #666;
+}
+.meal-summary .macro-summary {
+    display: none;
+}
+
+.meal-log-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.meal-log-list li {
+    background-color: #fdfdfd;
+    padding: 10px 10px;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+    padding-right: 35px; /* Space for delete button */
+    cursor: pointer;
+    transition: background-color 0.1s ease;
+}
+ .meal-log-list li:hover {
+    background-color: #f0f7ff;
+ }
+ .meal-log-list li:last-child {
+    border-bottom: none;
+}
+.log-item-details {
+     display: block;
+     color: #333;
+     font-weight: bold;
+     font-size: 0.95rem;
+     margin-bottom: 3px;
+}
+.log-item-nutrition-details {
+    display: block;
+    font-size: 0.8rem;
+    color: #777;
+}
+ .log-item-nutrition-details span {
+    margin-right: 8px;
+    white-space: nowrap;
+}
+.log-item-nutrition-details .macro-label {
+    font-weight: bold;
+    color: #666;
+}
+
+
+.wide-container {
+    width: 40vw;
+    height: 40vh;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-log-item-btn {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+    padding: 0;
+    opacity: 0.6;
+    transition: opacity 0.2s ease, background-color 0.2s ease;
+    z-index: 2;
+}
+.delete-log-item-btn:hover {
+    background-color: #e60000;
+    opacity: 1;
+}
+
+.log-empty-message {
+    text-align: center;
+    color: #999;
+    font-style: italic;
+    padding: 10px 0;
+    font-size: 0.9rem;
+    display: none;
+}
+#total-nutrition-container {
+    text-align: right;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+    margin-top: 20px;
+    padding: 15px 0;
+    border-top: 2px solid #4CAF50;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+ #total-nutrition-container > div {
+    text-align: center;
+ }
+#total-nutrition-container .total-label {
+    display: block;
+    font-size: 0.8rem;
+    color: #555;
+    margin-bottom: 2px;
+}
+ #total-nutrition-container .total-value {
+    font-size: 1.1rem;
+ }
+
+ /* Chart Styles Removed */
+
+
+/* --- Modal Styles --- */
+.modal-overlay {
+    position: fixed; left: 0; top: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); display: none;
+    justify-content: center; align-items: center; z-index: 1000;
+    overflow-y: auto; padding: 20px 0;
+}
+.modal-content {
+    background-color: #fff; padding: 30px; border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2); min-width: 300px;
+    max-width: 90%; text-align: center; margin: auto;
+}
+.modal-content h3 { margin-top: 0; margin-bottom: 10px; color: #4CAF50; }
+#modal-nutrition-display {
+    font-size: 1rem;
+    color: #555;
+    margin-top: 0; margin-bottom: 20px; min-height: 1.5em;
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #eee;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+#modal-nutrition-display span {
+    font-weight: bold;
+    white-space: nowrap;
+}
+ #modal-nutrition-display .label {
+     font-weight: normal;
+     color: #333;
+     margin-right: 3px;
+ }
+.modal-content label {
+    display: block; margin-top: 15px; margin-bottom: 5px;
+    font-weight: bold; text-align: left;
+ }
+.modal-content input[type="number"],
+.modal-content select {
+    width: 100%; padding: 10px; border: 1px solid #ccc;
+    border-radius: 4px; font-size: 1rem; box-sizing: border-box;
+    background-color: #fff;
+}
+.modal-content .unit-selection-container {
+     margin-top: 15px;
+}
+.modal-content .modal-buttons { margin-top: 25px; display: flex; justify-content: space-around; }
+.modal-content button { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-size: 1rem; transition: background-color 0.2s ease; }
+#modal-action-btn {
+     background-color: #4CAF50; color: white;
+}
+#modal-action-btn:hover { background-color: #45a049; }
+#modal-cancel-btn { background-color: #f44336; color: white; }
+#modal-cancel-btn:hover { background-color: #da190b; }
+.modal-overlay.active { display: flex; }
+/* --- End Modal Styles --- */
+
+#daily-log-container {
+    width: 40vw;
+    height: 40vh;
+    margin: 0 auto; /* center horizontally */
+    overflow-y: auto;
+    padding: 20px;
+  }

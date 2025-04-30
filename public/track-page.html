@@ -12,9 +12,95 @@
         <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
 
         <title>Track | CalorieWise</title>
+        <style>
+            /* Additional styles for the graph components */
+            .calorie-graph-section {
+                padding: 20px;
+                background-color: var(--white);
+                border-radius: 15px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                margin: 20px auto 40px;
+                max-width: 950px;
+            }
+
+            .calorie-graph-section canvas {
+                max-height: 400px;
+            }
+
+            .calorie-graph-section h2 {
+                color: var(--navy);
+                font-family: "Quicksand", sans-serif;
+                font-size: 1.6rem;
+                margin-bottom: 20px;
+                text-align: center;
+            }
+
+            .weekly-stats {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 15px;
+                max-width: 950px;
+                margin: 0 auto 30px;
+            }
+
+            .stat-card {
+                background-color: #f8f8f8;
+                border-radius: 12px;
+                padding: 15px;
+                text-align: center;
+            }
+
+            .stat-card .stat-label {
+                color: #666;
+                font-size: 0.9rem;
+                margin-bottom: 8px;
+            }
+
+            .stat-card .stat-value {
+                color: var(--navy);
+                font-size: 1.4rem;
+                font-weight: bold;
+            }
+
+            .mini-tile-layout {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+                padding: 20px;
+                max-width: 950px;
+                margin: 0 auto;
+            }
+
+            .mini-tile {
+                border-radius: 20px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+                padding: 15px;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                width: 170px;
+                height: 60px;
+                transition: transform 0.2s ease;
+            }
+
+            .mini-tile-content h3 {
+                margin: 0;
+                font-size: 16px;
+                font-weight: 600;
+                color: #fff;
+            }
+
+            .mini-tile-content p {
+                margin: 0;
+                font-size: 12px;
+                color: #eee;
+            }
+        </style>
     </head>
 <body>
 
+  <!-- Keep original header -->
   <header>
     <h1 class="homeTitle">
       <a  id="home-link" href="home-page.html">
@@ -37,93 +123,83 @@
   </header>
 
   <main>
-
-    <div class="tile-layout">
-      <!-- Tile 1 -->
-      <div class="tile tile-1 orange-tile">
+    <!-- Mini tiles for daily metrics -->
+    <div class="mini-tile-layout">
+      <!-- Calories Tile -->
+      <div class="mini-tile orange-tile">
         <div class="tile-icon">🔥</div>
-        <div class="tile-content">
+        <div class="mini-tile-content">
           <h3>187 kcal</h3>
-          <p>Calories Burned</p>
-        </div>
-        <div class="circular-progress" style="--progress: 10;">
-          <div class="value">10%</div>
-        </div>
-        <div class="step-counter">
-          <h2>187  <span class="subtext">Calories</span></h2>
-          <div class="step-progress">
-            <div class="fill" style="width: 10%;"></div>
-          </div>
+          <p>Calories Burned Today</p>
         </div>
       </div>
-  
-      <!-- Tile 2 -->
-      <div class="tile tile-2 green-tile">
+      
+      <!-- Water Tile -->
+      <div class="mini-tile green-tile">
         <div class="tile-icon">💧</div>
-        <div class="tile-content">
+        <div class="mini-tile-content">
           <h3>2.5L</h3>
-          <p>Water Intake</p>
-        </div>
-        <div class="circular-progress" style="--progress: 60;">
-          <div class="value">60%</div>
-        </div>
-        <div class="step-counter">
-          <h2>1.5L <span class="subtext">Drank</span></h2>
-          <div class="step-progress">
-            <div class="fill" style="width: 60%;"></div>
-          </div>
+          <p>Water Intake Today</p>
         </div>
       </div>
-  
-      <!-- Tile 3 -->
-      <div class="tile tile-3 green-tile">
+      
+      <!-- Exercise Tile -->
+      <div class="mini-tile green-tile">
         <div class="tile-icon">🏋️</div>
-        <div class="tile-content">
+        <div class="mini-tile-content">
           <h3>12 min</h3>
-          <p>Exercise</p>
-        </div>
-        <div class="circular-progress" style="--progress: 20;">
-          <div class="value">20%</div>
-        </div>
-        <div class="step-counter">
-          <h2>12 <span class="subtext">Minutes</span></h2>
-          <div class="step-progress">
-            <div class="fill" style="width: 20%;"></div>
-          </div>
+          <p>Exercise Today</p>
         </div>
       </div>
-  
-      <!-- Tile 4 -->
-      <div class="tile tile-4 orange-tile">
+      
+      <!-- Sleep Tile -->
+      <div class="mini-tile orange-tile">
         <div class="tile-icon">🛏️</div>
-        <div class="tile-content">
+        <div class="mini-tile-content">
           <h3>7.8 hrs</h3>
-          <p>Sleep</p>
-        </div>
-        <div class="circular-progress" style="--progress: 98;">
-          <div class="value">98%</div>
-        </div>
-        <div class="step-counter">
-          <h2>7.8 hrs <span class="subtext">Slept</span></h2>
-          <div class="step-progress">
-            <div class="fill" style="width: 98%;"></div>
-          </div>
+          <p>Sleep Today</p>
         </div>
       </div>
-
-      <div class = "tile tile-5 navy-tile">
-        <div class="step-counter main-counter">
-          <h2>7,641 <span class="subtext">Steps Taken</span></h2>
-          <div class="step-progress">
-            <div class="fill" style="width: 76%;"></div>
-          </div>
+      
+      <!-- Steps Tile -->
+      <div class="mini-tile navy-tile">
+        <div class="tile-icon">👣</div>
+        <div class="mini-tile-content">
+          <h3>7,641</h3>
+          <p>Steps Today</p>
         </div>
+      </div>
+    </div>
 
+    <!-- Main Calorie Graph Section -->
+    <section class="calorie-graph-section">
+      <h2>Calories In vs Calories Out</h2>
+      <canvas id="calorieChart" width="900" height="400" style="height: 400px;"></canvas>
+    </section>
 
+    <!-- Weekly Stats Section -->
+    <div class="weekly-stats">
+      <div class="stat-card">
+        <div class="stat-label">Avg. Calories In</div>
+        <div class="stat-value">2,050</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Avg. Calories Burned</div>
+        <div class="stat-value">2,036</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Net Calories</div>
+        <div class="stat-value">+98</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Active Days</div>
+        <div class="stat-value">6/7</div>
+      </div>
     </div>
   </main>
 
-    <nav class="bottom-nav">
+  <!-- Keep original bottom nav -->
+  <nav class="bottom-nav">
     <a href="#" class="nav-item" aria-label="Log Food" onclick="location.href='log-food-page.html'"> 
       <span class="nav-icon">&#x1F34E;</span>
         <span class="nav-label">Log Food</span>
@@ -136,6 +212,117 @@
         <span class="nav-icon">&#x1F3C3;</span>
         <span class="nav-label">Log Exercise</span>
     </a>
-</nav>
+  </nav>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Fetch calorie history and render the chart dynamically
+    const username = localStorage.getItem('username');
+    fetch('/getCalorieHistory', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ username })
+    })
+    .then(res => res.json())
+    .then(data => {
+      const dates = data.map(entry => entry.date);
+      const caloriesIn = data.map(entry => Number(entry.in));
+      const caloriesBurned = data.map(entry => Number(entry.out));
+
+      // Initialize Chart.js with dynamic data
+      const ctx = document.getElementById('calorieChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: dates,
+          datasets: [
+            {
+              label: 'Calories In',
+              data: caloriesIn,
+              borderColor: 'rgba(244, 122, 78, 1)',
+              backgroundColor: 'rgba(244, 122, 78, 0.1)',
+              tension: 0.4,
+              borderWidth: 3,
+              pointBackgroundColor: 'rgba(244, 122, 78, 1)',
+              fill: true
+            },
+            {
+              label: 'Calories Out',
+              data: caloriesBurned,
+              borderColor: 'rgba(42, 180, 116, 1)',
+              backgroundColor: 'rgba(42, 180, 116, 0.1)',
+              tension: 0.4,
+              borderWidth: 3,
+              pointBackgroundColor: 'rgba(42, 180, 116, 1)',
+              fill: true
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              display: true,
+              position: 'top',
+              labels: {
+                font: {
+                  family: '"Quicksand", sans-serif',
+                  size: 14
+                }
+              }
+            },
+            tooltip: {
+              backgroundColor: 'rgba(12, 34, 57, 0.8)',
+              titleFont: {
+                family: '"Quicksand", sans-serif',
+                size: 14
+              },
+              bodyFont: {
+                family: '"Quicksand", sans-serif',
+                size: 13
+              },
+              padding: 12
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              grid: {
+                color: 'rgba(0, 0, 0, 0.05)'
+              },
+              ticks: {
+                font: {
+                  family: '"Quicksand", sans-serif'
+                }
+              }
+            },
+            x: {
+              grid: {
+                display: false
+              },
+              ticks: {
+                font: {
+                  family: '"Quicksand", sans-serif'
+                }
+              }
+            }
+          }
+        }
+      });
+    });
+
+    // Toggling settings dropdown
+    const settingsButton = document.querySelector('.settings-button');
+    const settingsMenu = document.getElementById('settings-menu');
+    
+    settingsButton.addEventListener('click', function() {
+      const expanded = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', !expanded);
+      settingsMenu.hidden = expanded;
+    });
+  });
+</script>
 </body>
 </html>

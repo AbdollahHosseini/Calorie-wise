@@ -1,2 +1,2 @@
 # Calorie-wise
-Our Java Group Coursework for a PI informatics software
+Our Web App Group Coursework for a PI informatics software
